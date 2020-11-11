@@ -19,6 +19,17 @@ spec:
         image: brv147/playground:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: password
         volumeMounts:
         - name: config-volume
           mountPath: /config  
